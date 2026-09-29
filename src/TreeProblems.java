@@ -237,6 +237,26 @@ public class TreeProblems {
    Hint: Use findRoot to start. Then, make a recursive helper method.
   */
   public static int maxDepth(Map<String, List<String>> tree) {
-    return -1;
+    if(tree == null){
+      return 0;
+    }
+    String root = findRoot(tree);
+    int maxDepth = 0;
+    maxDepth = Search(tree, root) ;
+
+
+    return maxDepth;
+  }
+  public static <T> int Search(Map<String, List<String>> tree ,String node){
+    if(node == null){
+      return 0;
+    }
+    int depth = 0;
+    for(String child : tree.get(node)){
+      depth = Math.max(Search(tree, child), depth) ;
+    }
+
+    return depth + 1;
   }
 }
+
